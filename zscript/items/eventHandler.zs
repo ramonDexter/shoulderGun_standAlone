@@ -1,0 +1,4 @@
+
+class shoulderGunEventHandler : EventHandler {
+    
+}

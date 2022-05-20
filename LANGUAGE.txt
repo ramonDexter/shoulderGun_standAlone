@@ -1,0 +1,15 @@
+[enu Default]
+///////////////////////////////////////////////////////////////////////////////////////
+TAG_shoulderGun = "ShoulderGun";
+PICKUP_shoulderGun = "You picked up the ShoulderGun!";
+TAG_shldrGunMag = "ShoulderGun Cell";
+PICKUP_shldrGunMag = "You picked up the ShoulderGun Cell!";
+TAG_shoulderGunMag_item = "ShoulderGun Cell Pack";
+PICKUP_shoulderGunMag_item = "You picked up the ShoulderGun Cell Pack";
+T_shoulderGun_charger = "ShoulderGun Charger";
+F_shoulderGun_charger = "\c[green][ Nasel jsi Nabijec ShoulderGunu! ]";
+M_shgun_chargeFull = "\c[green][ ShoulderGun magazine full, no need to recharge! ]";
+M_shgun_recharge1 = "\c[yellow][ Recharged ";
+M_shgun_recharge2 = "\c[yellow] ShoulderGun charges! ]";
+M_shgun_notenoughrecharge = "\c[red][ Not enough Energypods to recharge! ]";
+////////////////////////////////////////////////////////////////////////////////
