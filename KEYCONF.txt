@@ -1,0 +1,4 @@
+addkeysection "[ ShoulderGun controls ]" soa_keysection
+
+AddMenuKey "ShoulderGun" shoulderGun_bind
+alias shoulderGun_bind "use shoulderGun"

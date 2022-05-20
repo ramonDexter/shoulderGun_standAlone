@@ -28,7 +28,7 @@ class shoulderGun : CustomInventory {
 		//player.mo.PlayAttacking2 ();
 		let ownr2 = playerPawn(invoker.owner);
         if (useAmmo) {
-            ownr2.takeInventory("shoulderGunMag", 1);
+            ownr2.takeInventory("shoulderGun_magazine", 1);
         }		
 		//  shoot action z blasterStaff lvl.2 altFire  /////////////////////////
 		A_StartSound("weapons/shoulderGun/loop", CHAN_6, CHANF_DEFAULT, 1.0, false);                               
@@ -48,6 +48,9 @@ class shoulderGun : CustomInventory {
 		//$Title "ShoulderGun"
 		
 		+INVENTORY.INVBAR
+		+INVENTORY.UNDROPPABLE
+		+INVENTORY.UNTOSSABLE
+		//+INVENTORY.UNCLEARABLE
 		Tag "$TAG_shoulderGun";
 		Inventory.Icon "I_SHCN";
 		Inventory.Amount 1;
@@ -69,7 +72,7 @@ class shoulderGun : CustomInventory {
 			TNT1 A 0 {			
 				statelabel nextstate = "remove";
 				let ownr = playerPawn(invoker.owner); 
-				if (ownr && ownr.countInv("shoulderGunMag") > 0 ) {					
+				if (ownr && ownr.countInv("shoulderGun_magazine") > 0 ) {					
 					nextstate = "startoverlay";						 									
 				}
 				else {
@@ -120,7 +123,7 @@ class shoulderGun : CustomInventory {
 	}
 }
 // weapon/item ammunition //////////////////////////////////////////////////////
-class shoulderGunMag : CustomInventory {
+class shoulderGun_magazine : CustomInventory {
 	Default {
 		//$Category "SoA/Ammo"
 		//$Title "Shouldercannon Ammo"
@@ -168,7 +171,7 @@ class shoulderGunMag_item : CustomInventory {
 			SHMG V -1;
 			Stop;
 		Use:
-			TNT1 A 0 A_GiveInventory("shoulderGunMag", 32);
+			TNT1 A 0 A_GiveInventory("shoulderGun_magazine", 32);
 			Stop;
 	}
 }
@@ -179,13 +182,13 @@ class shoulderGunCharger : CustomInventory {
             return;
         }
         int ammoToCharge;
-        ammoToCharge = 32 - CountInv("shoulderGunMag");
-		if ( CountInv("shoulderGunMag") == 32 ) {
+        ammoToCharge = 32 - CountInv("shoulderGun_magazine");
+		if ( CountInv("shoulderGun_magazine") == 32 ) {
 			A_Log("$M_shgun_chargeFull");
 		} else {
-			if ( CountInv("shoulderGunMag") < 32 ) {
+			if ( CountInv("shoulderGun_magazine") < 32 ) {
 				A_StartSound("weapons/shouldergun/recharge");
-				A_GiveInventory("shoulderGunMag", ammoToCharge);
+				A_GiveInventory("shoulderGun_magazine", ammoToCharge);
 				//A_TakeInventory("EnergyPod", ammoToCharge);				
 				//A_Print("[ Recharged "..ammoToCharge.." ShoulderGun charges! ]");
 				A_Log(String.Format("%s%i%s", stringtable.localize("$M_shgun_recharge1"), ammoToCharge, stringtable.localize("$M_shgun_recharge2")));
