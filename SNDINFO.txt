@@ -7,7 +7,4 @@ weapons/shoulderGun/loop  "sounds/shoulderGun/shoulderGunLoop.ogg"
 weapons/shoulderGun/stop  "sounds/shoulderGun/shoulderGunStop.ogg"
 weapons/shouldergun/recharge "sounds/shoulderGun/shoulderGunRecharge.wav"
 weapons/shouldergun/noAmmo "sounds/shoulderGun/shoulderGunNoAm.wav"
-//items/shGunOpn  "sounds/shoulderGun/dsdbopn.wav"
-//items/shcanload  "sounds/shoulderGun/dsdbload.wav"
-//items/shcanclose  "sounds/shoulderGun/dsdbcls.wav"
 ////////////////////////////////////////////////////////////////////////////////

@@ -31,9 +31,12 @@ class shoulderGun : CustomInventory {
             ownr2.takeInventory("shoulderGun_magazine", 1);
         }		
 		//  shoot action z blasterStaff lvl.2 altFire  /////////////////////////
-		A_StartSound("weapons/shoulderGun/loop", CHAN_6, CHANF_DEFAULT, 1.0, false);                               
+		A_StartSound("weapons/shoulderGun/loop", CHAN_5, CHANF_DEFAULT, 1.0, false);                               
         //A_GunFlash();
-		A_FireProjectile("greenArcLightning", 0.1*random(20,-20), false, -10, 20, 0, 0);
+		int shootHeight = player.viewheight - 24;
+		if ( player.viewHeight == 46 ) { shootHeight = 16; }
+		if ( player.viewHeight == 48 ) { shootHeight = 19; }
+ 		A_FireProjectile("greenArcLightning", 0.1*random(20,-20), false, -10, shootHeight, 0, 0);
 		A_SpawnItemEx("redFlashShort", 8, 0, 16, 0);
         if ( doAlertMonsters ) {
             A_AlertMonsters();
@@ -104,7 +107,7 @@ class shoulderGun : CustomInventory {
 			SHCN J 2 Bright SOA_FireShoulderGun(false, false, 6);
 			SHCN B 3;
 			SHCN C 3;
-			SHCN D 4 A_StartSound("weapons/shoulderGun/stop",6); //zrusit zvuk blesku
+			SHCN D 4 A_StartSound("weapons/shoulderGun/stop",5); //zrusit zvuk blesku
 			SHCN E 5;
 			SHCN F 4;
 			SHCN G 4;
