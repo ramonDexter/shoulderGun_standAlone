@@ -33,9 +33,11 @@ class shoulderGun : CustomInventory {
 		//  shoot action z blasterStaff lvl.2 altFire  /////////////////////////
 		A_StartSound("weapons/shoulderGun/loop", CHAN_5, CHANF_DEFAULT, 1.0, false);                               
         //A_GunFlash();
-		int shootHeight = player.viewheight - 24;
-		if ( player.viewHeight == 46 ) { shootHeight = 16; }
-		if ( player.viewHeight == 48 ) { shootHeight = 19; }
+		//int shootHeight;
+		int shootHeight = ownr2.viewheight - 24;		
+		if ( ownr2.viewHeight == 46 ) { shootHeight = 16; } //ashes
+		if ( ownr2.viewHeight == 48 ) { shootHeight = 19; } //hexen
+		if ( ownr2.viewHeight == 56 ) { shootHeight = 10; } //ascension
  		A_FireProjectile("greenArcLightning", 0.1*random(20,-20), false, -10, shootHeight, 0, 0);
 		A_SpawnItemEx("redFlashShort", 8, 0, 16, 0);
         if ( doAlertMonsters ) {
