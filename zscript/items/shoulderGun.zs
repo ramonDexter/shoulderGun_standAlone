@@ -21,7 +21,7 @@ class decalMaulerPuff : MaulerPuff {
 // inventory item with new functionality ///////////////////////////////////////
 class shoulderGun : CustomInventory {	
 		
-	action void SOA_FireShoulderGun(bool useAmmo, bool doAlertMonsters, int overlayNumber) {        
+	action void W_FireShoulderGun(bool useAmmo, bool doAlertMonsters, int overlayNumber) {        
 		if (player == null) {
 			return;
 		}				
@@ -101,12 +101,12 @@ class shoulderGun : CustomInventory {
 			SHCH AA 1;
 			//SHCN A 1 A_StartSound("weapons/shoulderGun/fire", CHAN_7, CHANF_DEFAULT, 1.0, false);
 			SHCN A 2;
-			SHCN I 2 Bright SOA_FireShoulderGun(true, true, 6);
-			SHCN J 2 Bright SOA_FireShoulderGun(false, false, 6);
-			SHCN I 2 Bright SOA_FireShoulderGun(false, true, 6);
-			SHCN J 2 Bright SOA_FireShoulderGun(false, false, 6);
-			SHCN I 2 Bright SOA_FireShoulderGun(false, true, 6);
-			SHCN J 2 Bright SOA_FireShoulderGun(false, false, 6);
+			SHCN I 2 Bright W_FireShoulderGun(true, true, 6);
+			SHCN J 2 Bright W_FireShoulderGun(false, false, 6);
+			SHCN I 2 Bright W_FireShoulderGun(false, true, 6);
+			SHCN J 2 Bright W_FireShoulderGun(false, false, 6);
+			SHCN I 2 Bright W_FireShoulderGun(false, true, 6);
+			SHCN J 2 Bright W_FireShoulderGun(false, false, 6);
 			SHCN B 3;
 			SHCN C 3;
 			SHCN D 4 A_StartSound("weapons/shoulderGun/stop",5); //zrusit zvuk blesku
