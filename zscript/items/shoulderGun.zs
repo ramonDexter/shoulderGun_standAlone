@@ -39,7 +39,7 @@ class shoulderGun : CustomInventory {
 		if ( ownr2.viewHeight == 48.0 ) { shootHeight = 19; } //hexen
 		if ( ownr2.viewHeight == 56.0 ) { shootHeight = 10; } //ascension
  		A_FireProjectile("greenArcLightning", 0.1*random(20,-20), false, -10, shootHeight, 0, 0);
-		A_SpawnItemEx("redFlashShort", 8, 0, 16, 0);
+		A_SpawnItemEx("SHGflashShort", 8, 0, 16, 0);
 		if ( doAlertMonsters ) {
 			A_AlertMonsters();
 		}
@@ -286,16 +286,17 @@ class arcLightningTrail : actor {
 	States {
 		Spawn:
 			TNT1 A 0;
-			PLSG BBCCDD 1 bright light("greenFlash") A_FadeOut(0.1);
+			PLSG BBCCDD 1 bright light("gl_shouldergun_lightningFlash") A_FadeOut(0.1);
 		Trolololo:
 			TNT1 A 0 A_SetScale(Scale.X -0.01, Scale.Y -0.01);
-			PLSG D 1 bright light("greenFlash") A_FadeOut(0.08);
+			PLSG D 1 bright light("gl_shouldergun_lightningFlash") A_FadeOut(0.08);
 			Loop;
 	}
 }
 // flash actor /////////////////////////////////////////////////////////////////
-class flashBase : actor {	
+class SHGflashShort : actor { //used for light to spawn
 	Default {
+		+NOINTERACTION
 		+MISSILE
 		+NOBLOCKMAP
 		+NOGRAVITY
@@ -309,16 +310,11 @@ class flashBase : actor {
 		Height 1;
 		Mass 1;
 		Damage 0;
-		Speed 1;
-	}
-}
-class redFlashShort : flashBase { //used for light to spawn
-	Default {
-		+NOINTERACTION;
+		Speed 0;
 	}
 	States {
 		Spawn:
-			TNT1 A 3;
+			TNT1 A 3 NODELAY light("gl_shouldergun_greenflash");
 			Stop;
 	}
 }
