@@ -24,16 +24,13 @@ class shoulderGun : CustomInventory {
 	action void W_FireShoulderGun(bool useAmmo, bool doAlertMonsters, int overlayNumber) {        
 		if (player == null) {
 			return;
-		}				
-		//player.mo.PlayAttacking2 ();
+		}
 		let ownr2 = playerPawn(invoker.owner);
 		if (useAmmo) {
 			ownr2.takeInventory("shoulderGun_magazine", 1);
 		}		
 		//  shoot action z blasterStaff lvl.2 altFire  /////////////////////////
-		A_StartSound("weapons/shoulderGun/loop", CHAN_5, CHANF_DEFAULT, 1.0, false);                               
-		//A_GunFlash();
-		//int shootHeight;
+		A_StartSound("weapons/shoulderGun/loop", CHAN_5, CHANF_DEFAULT, 1.0, false); 
 		int shootHeight = ownr2.viewheight - 24;		
 		if ( ownr2.viewHeight == 46.0 ) { shootHeight = 16; } //ashes
 		if ( ownr2.viewHeight == 48.0 ) { shootHeight = 19; } //hexen
@@ -48,14 +45,14 @@ class shoulderGun : CustomInventory {
 	}
 	
 	Default {
-		//$Category "SoA/Items"
+		//$Category "Items"
 		//$Color 9
 		//$Title "ShoulderGun"
 		
 		+INVENTORY.INVBAR
 		+INVENTORY.UNDROPPABLE
 		+INVENTORY.UNTOSSABLE
-		//+INVENTORY.UNCLEARABLE
+
 		Tag "$TAG_shoulderGun";
 		Inventory.Icon "I_SHCN";
 		Inventory.Amount 1;
@@ -63,12 +60,8 @@ class shoulderGun : CustomInventory {
 		Inventory.InterhubAmount 1;
 		Inventory.PickupMessage "$PICKUP_shoulderGun";
 		Decal "BulletChip";
-		//radius 10;
-		//height 32;
 		scale 0.35;
-		//Mass mass_shouldergun;
-	}
-	
+	}	
 	States {
 		Spawn:
 			SHG3 V -1;
@@ -87,9 +80,7 @@ class shoulderGun : CustomInventory {
 				}
 				return resolvestate(nextstate);
 			}
-			Fail;
-	  
-	  
+			Fail;	  
 		startoverlay:
 			TNT1 A 0 {
 				int layer = 6;
@@ -99,7 +90,6 @@ class shoulderGun : CustomInventory {
 		shootShoulderGun:
 			SHCH JIHGFEDCBA 1;
 			SHCH AA 1;
-			//SHCN A 1 A_StartSound("weapons/shoulderGun/fire", CHAN_7, CHANF_DEFAULT, 1.0, false);
 			SHCN A 2;
 			SHCN I 2 Bright W_FireShoulderGun(true, true, 6);
 			SHCN J 2 Bright W_FireShoulderGun(false, false, 6);
@@ -109,7 +99,7 @@ class shoulderGun : CustomInventory {
 			SHCN J 2 Bright W_FireShoulderGun(false, false, 6);
 			SHCN B 3;
 			SHCN C 3;
-			SHCN D 4 A_StartSound("weapons/shoulderGun/stop",5); //zrusit zvuk blesku
+			SHCN D 4 A_StartSound("weapons/shoulderGun/stop",5); //cancel shoot sound
 			SHCN E 5;
 			SHCN F 4;
 			SHCN G 4;
@@ -119,7 +109,6 @@ class shoulderGun : CustomInventory {
 			TNT1 A 0 {
 				return resolveState("remove");
 			}		
-		
 		remove:
 			TNT1 A 0 {
 				A_ClearOverlays(6, 6);
@@ -130,7 +119,7 @@ class shoulderGun : CustomInventory {
 // weapon/item ammunition //////////////////////////////////////////////////////
 class shoulderGun_magazine : CustomInventory {
 	Default {
-		//$Category "SoA/Ammo"
+		//$Category "Items"
 		//$Title "Shouldercannon Ammo"
 		
 		+INVENTORY.INVBAR	
@@ -144,8 +133,7 @@ class shoulderGun_magazine : CustomInventory {
 		inventory.interhubamount 32;
 		Inventory.PickupMessage "$PICKUP_shoulderGunMag";
 		Mass 0;
-	}
-	
+	}	
 	States {
 		Spawn:
 			SHCC AB 6 Bright;
@@ -157,7 +145,7 @@ class shoulderGun_magazine : CustomInventory {
 }
 class shoulderGunMag_item : CustomInventory {
 	Default {
-		//$Category "SoA/Ammo"
+		//$Category "Items"
 		//$Title "Shouldercannon Ammo pack"
 		
 		//radius 10;
@@ -194,8 +182,6 @@ class shoulderGunCharger : CustomInventory {
 			if ( CountInv("shoulderGun_magazine") < 32 ) {
 				A_StartSound("weapons/shouldergun/recharge");
 				A_GiveInventory("shoulderGun_magazine", ammoToCharge);
-				//A_TakeInventory("EnergyPod", ammoToCharge);				
-				//A_Print("[ Recharged "..ammoToCharge.." ShoulderGun charges! ]");
 				A_Log(String.Format("%s%i%s", stringtable.localize("$M_shgun_recharge1"), ammoToCharge, stringtable.localize("$M_shgun_recharge2")));
 			} else {
 				A_StartSound("weapons/shouldergun/noAmmo");
@@ -205,7 +191,7 @@ class shoulderGunCharger : CustomInventory {
 	}
 
 	Default {
-		//$Category "SoA/Items"
+		//$Category "Items"
 		//$Color 17
 		//$Title "ShoulderGun Charger"
 		+INVENTORY.INVBAR
@@ -214,8 +200,6 @@ class shoulderGunCharger : CustomInventory {
 		Tag "$T_shoulderGun_charger";
 		Inventory.Icon "I_SHCR";
 		Inventory.PickupMessage "$F_shoulderGun_charger";
-		//Inventory.UseSound "weapons/shouldergun/recharge";
-		//Mass mass_shoulderGun_charger;
 		Inventory.Amount 1;
 		Inventory.MaxAmount 1;	
 		Inventory.InterhubAmount 1;
@@ -238,10 +222,8 @@ class greenArcLightning : FastProjectile {
 		Height 4;
 		Damage 6;
 		Renderstyle "Add";
-		//DamageType "Disintegrate";
 		MissileType "arcLightningTrailSpawner";
 		Decal "DoomImpScorch";
-
 		+CANNOTPUSH
 		+BLOODLESSIMPACT
 		+THRUGHOST
@@ -278,7 +260,6 @@ class arcLightningTrail : actor {
 		RenderStyle "Add";
 		Scale 0.175;
 		Alpha 0.75;
-
 		+NOINTERACTION
 		+NOGRAVITY
 		+THRUGHOST
@@ -304,8 +285,7 @@ class SHGflashShort : actor { //used for light to spawn
 		+NOTELEPORT
 		+FORCEXYBILLBOARD
 		+NOTDMATCH
-		+GHOST
-		
+		+GHOST		
 		Radius 1;
 		Height 1;
 		Mass 1;
@@ -321,17 +301,14 @@ class SHGflashShort : actor { //used for light to spawn
 // dummy decorative items //////////////////////////////////////////////////////
 class shoulderGun1_dummy : actor {
 	Default {
-		//$Category "SoA/items/Dummies"
+		//$Category "items/Dummies"
 		//$Color 1
 		//$Title "shoulderGun1 dummy"
 		
-		-SOLID
-		
-		height 24;
-		radius 16;
-		radius 10;
-		height 32;
-		scale 0.35;
+		-SOLID		
+		Height 24;
+		Radius 16;
+		Scale 0.35;
 	}
 	
 	States {
@@ -342,17 +319,14 @@ class shoulderGun1_dummy : actor {
 }
 class shoulderGun2_dummy : actor {
 	Default {
-		//$Category "SoA/items/Dummies"
+		//$Category "items/Dummies"
 		//$Color 1
 		//$Title "shoulderGun2 dummy"
 		
-		-SOLID
-		
-		height 24;
-		radius 16;
-		radius 10;
-		height 32;
-		scale 0.35;
+		-SOLID		
+		Height 24;
+		Radius 16;
+		Scale 0.35;
 	}
 	States {
 		Spawn:
@@ -362,17 +336,14 @@ class shoulderGun2_dummy : actor {
 }
 class shoulderGun3_dummy : actor {
 	Default {
-		//$Category "SoA/items/Dummies"
+		//$Category "items/Dummies"
 		//$Color 1
 		//$Title "shoulderGun3 dummy"
 		
-		-SOLID
-		
-		height 24;
-		radius 16;
-		radius 10;
-		height 32;
-		scale 0.35;
+		-SOLID		
+		Height 24;
+		Radius 16;
+		Scale 0.35;
 	}
 	States {
 		Spawn:
