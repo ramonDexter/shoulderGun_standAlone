@@ -27,12 +27,12 @@ class shoulderGun : CustomInventory {
 		}				
 		//player.mo.PlayAttacking2 ();
 		let ownr2 = playerPawn(invoker.owner);
-        if (useAmmo) {
-            ownr2.takeInventory("shoulderGun_magazine", 1);
-        }		
+		if (useAmmo) {
+			ownr2.takeInventory("shoulderGun_magazine", 1);
+		}		
 		//  shoot action z blasterStaff lvl.2 altFire  /////////////////////////
 		A_StartSound("weapons/shoulderGun/loop", CHAN_5, CHANF_DEFAULT, 1.0, false);                               
-        //A_GunFlash();
+		//A_GunFlash();
 		//int shootHeight;
 		int shootHeight = ownr2.viewheight - 24;		
 		if ( ownr2.viewHeight == 46.0 ) { shootHeight = 16; } //ashes
@@ -40,9 +40,9 @@ class shoulderGun : CustomInventory {
 		if ( ownr2.viewHeight == 56.0 ) { shootHeight = 10; } //ascension
  		A_FireProjectile("greenArcLightning", 0.1*random(20,-20), false, -10, shootHeight, 0, 0);
 		A_SpawnItemEx("redFlashShort", 8, 0, 16, 0);
-        if ( doAlertMonsters ) {
-            A_AlertMonsters();
-        }
+		if ( doAlertMonsters ) {
+			A_AlertMonsters();
+		}
 		A_OverlayOffset(overlayNumber, random(-2,2), random(-2,2), WOF_INTERPOLATE); //tohle trese s shouldergunem...a shouldergun neni weapon, ale overlay!
 		////////////////////////////////////////////////////////////////////////
 	}
@@ -88,8 +88,8 @@ class shoulderGun : CustomInventory {
 				return resolvestate(nextstate);
 			}
 			Fail;
-      
-      
+	  
+	  
 		startoverlay:
 			TNT1 A 0 {
 				int layer = 6;
@@ -117,8 +117,8 @@ class shoulderGun : CustomInventory {
 			SHCN A 3;
 			SHCH ABCDEFGHIJ 1;
 			TNT1 A 0 {
-                return resolveState("remove");
-            }		
+				return resolveState("remove");
+			}		
 		
 		remove:
 			TNT1 A 0 {
@@ -182,12 +182,12 @@ class shoulderGunMag_item : CustomInventory {
 }
 class shoulderGunCharger : CustomInventory {
 
-    action void SOA_reloadShoulderGun() {
-        if ( player == null ) {
-            return;
-        }
-        int ammoToCharge;
-        ammoToCharge = 32 - CountInv("shoulderGun_magazine");
+	action void SOA_reloadShoulderGun() {
+		if ( player == null ) {
+			return;
+		}
+		int ammoToCharge;
+		ammoToCharge = 32 - CountInv("shoulderGun_magazine");
 		if ( CountInv("shoulderGun_magazine") == 32 ) {
 			A_Log("$M_shgun_chargeFull");
 		} else {
@@ -202,109 +202,96 @@ class shoulderGunCharger : CustomInventory {
 				A_Log("$M_shgun_notenoughrecharge");
 			}
 		}
-    }
+	}
 
-    Default {
-        //$Category "SoA/Items"
+	Default {
+		//$Category "SoA/Items"
 		//$Color 17
 		//$Title "ShoulderGun Charger"
 		+INVENTORY.INVBAR
 		+INVENTORY.ALWAYSPICKUP
 		+INVENTORY.UNDROPPABLE
-        Tag "$T_shoulderGun_charger";
-        Inventory.Icon "I_SHCR";
-        Inventory.PickupMessage "$F_shoulderGun_charger";
+		Tag "$T_shoulderGun_charger";
+		Inventory.Icon "I_SHCR";
+		Inventory.PickupMessage "$F_shoulderGun_charger";
 		//Inventory.UseSound "weapons/shouldergun/recharge";
-        //Mass mass_shoulderGun_charger;
+		//Mass mass_shoulderGun_charger;
 		Inventory.Amount 1;
 		Inventory.MaxAmount 1;	
 		Inventory.InterhubAmount 1;
 		Scale 0.35;
-    }
-
-    States {
-        Spawn:
-            SWRP V -1;
-            Stop;
-        Use:
-            TNT1 A 0 SOA_reloadShoulderGun();
-            Fail;
-    }
+	}
+	States {
+		Spawn:
+			SWRP V -1;
+			Stop;
+		Use:
+			TNT1 A 0 SOA_reloadShoulderGun();
+			Fail;
+	}
 }
 // projectile //////////////////////////////////////////////////////////////////
-class greenArcLightning : FastProjectile
-{
-    Default
-    {
-        Speed 50;
-        Radius 4;
-        Height 4;
-        Damage 6;
-        Renderstyle "Add";
-        //DamageType "Disintegrate";
-        MissileType "arcLightningTrailSpawner";
+class greenArcLightning : FastProjectile {
+	Default {
+		Speed 50;
+		Radius 4;
+		Height 4;
+		Damage 6;
+		Renderstyle "Add";
+		//DamageType "Disintegrate";
+		MissileType "arcLightningTrailSpawner";
 		Decal "DoomImpScorch";
 
-        +CANNOTPUSH
-        +BLOODLESSIMPACT
+		+CANNOTPUSH
+		+BLOODLESSIMPACT
 		+THRUGHOST
-    }
-
-    states
-    {
-        Spawn:
-            TNT1 A 2;
-        Looplet:
-            TNT1 A 0;
-            TNT1 A 2 A_ChangeVelocity(frandom(-8,8), frandom(-8,8), frandom(-3, 3), 0);
-            TNT1 A 2 A_ChangeVelocity(frandom(-8,8), frandom(-8,8), frandom(-3, 3), 0);
-            TNT1 A 2 A_ChangeVelocity(frandom(-6,6), frandom(-6,6), frandom(-3, 3), 0);
-            Stop;
-        Ded:
-            TNT1 A 1;
-            stop;
-    }
+	}
+	states {
+		Spawn:
+			TNT1 A 2;
+		Looplet:
+			TNT1 A 0;
+			TNT1 A 2 A_ChangeVelocity(frandom(-8,8), frandom(-8,8), frandom(-3, 3), 0);
+			TNT1 A 2 A_ChangeVelocity(frandom(-8,8), frandom(-8,8), frandom(-3, 3), 0);
+			TNT1 A 2 A_ChangeVelocity(frandom(-6,6), frandom(-6,6), frandom(-3, 3), 0);
+			Stop;
+		Ded:
+			TNT1 A 1;
+			stop;
+	}
 }
-class arcLightningTrailSpawner : actor
-{
-    Default
-    {
-        +NOINTERACTION
-        +NOGRAVITY
+class arcLightningTrailSpawner : actor {
+	Default {
+		+NOINTERACTION
+		+NOGRAVITY
 		+THRUGHOST
-    }
-
-    States
-    {
-        Spawn:
-            TNT1 A 0;
-            TNT1 A 2 A_SpawnItemEx("arcLightningTrail",frandom(2.0,-2.0),frandom(2.0,-2.0),4+frandom(2.0,-2.0),0,0,0,0,0,0);
-            Stop;
-    }
+	}
+	States {
+		Spawn:
+			TNT1 A 0;
+			TNT1 A 2 A_SpawnItemEx("arcLightningTrail",frandom(2.0,-2.0),frandom(2.0,-2.0),4+frandom(2.0,-2.0),0,0,0,0,0,0);
+			Stop;
+	}
 }
-class arcLightningTrail : actor
-{
-    Default
-    {
-        RenderStyle "Add";
-        Scale 0.175;
-        Alpha 0.75;
+class arcLightningTrail : actor {
+	Default {
+		RenderStyle "Add";
+		Scale 0.175;
+		Alpha 0.75;
 
-        +NOINTERACTION
-        +NOGRAVITY
+		+NOINTERACTION
+		+NOGRAVITY
 		+THRUGHOST
-    }
-
-    States
-    {
-        Spawn:
-            TNT1 A 0;
-            PLSG BBCCDD 1 bright A_FadeOut(0.1);
-        Trolololo:
-            TNT1 A 0 A_SetScale(Scale.X -0.01, Scale.Y -0.01);
-            PLSG D 1 bright A_FadeOut(0.08);
-            Loop;
-    }
+	}
+	States {
+		Spawn:
+			TNT1 A 0;
+			PLSG BBCCDD 1 bright light("greenFlash") A_FadeOut(0.1);
+		Trolololo:
+			TNT1 A 0 A_SetScale(Scale.X -0.01, Scale.Y -0.01);
+			PLSG D 1 bright light("greenFlash") A_FadeOut(0.08);
+			Loop;
+	}
 }
 // flash actor /////////////////////////////////////////////////////////////////
 class flashBase : actor {	
