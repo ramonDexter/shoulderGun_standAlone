@@ -53,12 +53,12 @@ class shoulderGun : CustomInventory {
 		+INVENTORY.UNDROPPABLE
 		+INVENTORY.UNTOSSABLE
 
-		Tag "$TAG_shoulderGun";
+		Tag "Shouldergun";
 		Inventory.Icon "I_SHCN";
 		Inventory.Amount 1;
 		Inventory.MaxAmount 1;	
 		Inventory.InterhubAmount 1;
-		Inventory.PickupMessage "$PICKUP_shoulderGun";
+		Inventory.PickupMessage "You've picked up a Shouldergun!";
 		Decal "BulletChip";
 		scale 0.35;
 	}	
@@ -126,12 +126,12 @@ class shoulderGun_magazine : CustomInventory {
 		+INVENTORY.UNDROPPABLE
 		radius 10;
 		height 16;
-		Tag "$TAG_shoulderGunMag";
+		Tag "Shouldergun Magazine";
 		inventory.icon "I_SHCC";
 		inventory.amount 1;
 		Inventory.MaxAmount 32;
 		inventory.interhubamount 32;
-		Inventory.PickupMessage "$PICKUP_shoulderGunMag";
+		Inventory.PickupMessage "Shouldergun Magazine acquired.";
 		Mass 0;
 	}	
 	States {
@@ -152,9 +152,9 @@ class shoulderGunMag_item : CustomInventory {
 		//height 16;
 		+INVENTORY.INVBAR	
 		scale 0.55;
-		Tag "$TAG_shoulderGunMag_item";
+		Tag "Shouldercannon Ammo pack";
 		inventory.icon "I_SHMG";
-		Inventory.PickupMessage "$PICKUP_shoulderGunMag_item";
+		Inventory.PickupMessage "You've picked up a Shouldercannon Ammo pack!";
 		Inventory.Amount 1;
 		Inventory.MaxAmount 32;	
 		Inventory.InterhubAmount 32;
@@ -197,9 +197,9 @@ class shoulderGunCharger : CustomInventory {
 		+INVENTORY.INVBAR
 		+INVENTORY.ALWAYSPICKUP
 		+INVENTORY.UNDROPPABLE
-		Tag "$T_shoulderGun_charger";
+		Tag "ShoulderGun Charger";
 		Inventory.Icon "I_SHCR";
-		Inventory.PickupMessage "$F_shoulderGun_charger";
+		Inventory.PickupMessage "You've picked up a ShoulderGun Charger!";
 		Inventory.Amount 1;
 		Inventory.MaxAmount 1;	
 		Inventory.InterhubAmount 1;
