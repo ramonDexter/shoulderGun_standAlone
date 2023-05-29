@@ -35,7 +35,7 @@ class shoulderGun : CustomInventory {
 		if ( ownr2.viewHeight == 46.0 ) { shootHeight = 16; } //ashes
 		if ( ownr2.viewHeight == 48.0 ) { shootHeight = 19; } //hexen
 		if ( ownr2.viewHeight == 56.0 ) { shootHeight = 10; } //ascension
- 		A_FireProjectile("greenArcLightning", 0.1*random(20,-20), false, -10, shootHeight, 0, 0);
+ 		A_FireProjectile("greenArcLightning", 0.1*random(20,-20), false, -13, shootHeight, 0, 0);
 		A_SpawnItemEx("SHGflashShort", 8, 0, 16, 0);
 		if ( doAlertMonsters ) {
 			A_AlertMonsters();
